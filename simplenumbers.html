@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>simple numbers</title>
+</head>
+<body>
+	<script>
+	var arr = [];
+	do {
+		var number = +prompt("Please input a end number","10"); }
+	while ((number != number) || (number == false));
+	nextnumber:for (var i = 2; i < number; i++) {
+		for (var j = 2; j < i; j++) {
+			if(i % j == 0) continue nextnumber;
+			
+		}
+		arr.push(i);
+	}
+	alert(arr);
+	</script>
+</body>
+</html>

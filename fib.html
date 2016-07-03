@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Fibbonachi</title>
+	</head>
+	<body>
+		<script>
+			do {
+					var n = +prompt("Введите n: ", "2");
+					} while(n < 0 || n != n || n == false);
+			function fib(n) {
+			if (n > 1) {
+				return fib(n-1) + fib(n-2);
+			}
+			else return n;
+			}
+			alert(fib(n));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Random max</title>
+</head>
+<body>
+	<script>
+		do {
+			var max = +prompt("Введите max: ", "2");
+			var min = +prompt("Введите max: ", "2");
+		} while(max < 0 || max != max || max == false);
+		function randomMax(max , min) {
+			return Math.floor(min + Math.random() * (max + 1 - min));
+		}
+		alert(randomMax(max , min));
+	</script>
+</body>
+</html>
