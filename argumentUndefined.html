@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>arguments undefined</title>
+</head>
+<body>
+	<script>
+		function f(x) {
+  return arguments.length ? 1 : 0; 
+}
+
+alert(f(undefined)); // 1
+alert(f()); // 0
+	</script>
+</body>
+</html>
