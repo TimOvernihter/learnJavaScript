@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Date Objects</title>
+	</head>
+	<body>
+		<script>
+			var data = new Date();
+			alert(data.toLocaleString("ru"));
+			var date = new Date(2012,0,3);  // 3 января 2012
+			alert( getWeekDay(date) ); // Должно вывести 'вт'
+			function getWeekDay (date) {
+				switch (date.getDay()) {
+					case 0 : return "sun";
+					case 1 : return "mon";
+					case 2 : return "tue";
+					case 3 : return "wed";
+					case 4 : return "thu";
+					case 5 : return "fri";
+					case 6 : return "sat";
+				}
+			}
+			alert( getLocalDay(date) );
+			function getLocalDay(date) {
+				return date.getDay();
+			}
+			var d = new Date(2015, 0, 2);
+			alert( getDateAgo(d, 1) ); // 1, (1 января 2015)
+			alert( getDateAgo(d, 2) ); // 31, (31 декабря 2014)
+			alert( getDateAgo(d, 365) ); // 2, (2 января 2014)
+			function getDateAgo (d, number) {
+				d.setDate(d.getDate() - number);
+				return d;
+		}
+		alert(getLastDayOfMonth(2012, 1));
+		function getLastDayOfMonth (year , month) {
+			var date = new Date(year, month +1);
+			return date.getDate(date.setDate(date.getDate()-1));
+		}
+		alert(getSecondsToday());// == 36000 // (3600 * 10))
+		function getSecondsToday() {
+			var date = new Date();
+			var sec = date.getSeconds();
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			return hours * 3600 + minutes * 60 + sec;
+		}
+		alert(getSecondsToTomorrow());// == 36000 // (3600 * 10))
+		function getSecondsToTomorrow() {
+			var date = new Date();
+			var sec = date.getSeconds();
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			return 24 * 3600 - hours * 3600 - minutes * 60 - sec;
+		}
+		function formatDate(date) {
+		var now = new Date()
+		var diff  = now - date;
+		if (diff <= 1000) { return "Now!";}
+		if (diff <= 60000) { return diff/1000 +" seconds ago!";}
+		if ((diff > 60000) && (diff <= 3600000)) { return diff/1000*60 + " minutes ago!";}
+		return date.toLocaleString("ru");
+		}
+		
+		alert( formatDate(new Date(new Date - 1)) ); // "только что"
+		alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"
+		alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"
+		alert( formatDate(new Date(new Date - 86400 * 1000)) ); // вчерашняя дата в формате "дд.мм.гг чч:мм"
+		</script>
+		
+	</body>
+</html>
