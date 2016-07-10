@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Closures</title>
+	</head>
+	<body>
+		<script>
+		//sum()()
+		alert(sum(1)(2)); //= 3
+		alert(sum(5)(-1)); // = 4
+		
+		function sum(a) {
+			return function(b) {
+						return	a + b;
+			}
+		}
+		//buffer
+		function makeBuffer() {
+		var result = '';
+		return function(item) {
+			if (arguments.length == 0) return result;
+		return result += item;
+		}
+		}
+				var buffer = makeBuffer();	// добавить значения к буферу
+		buffer('Замыкания');
+		buffer(' Использовать');
+		buffer(' Нужно!');
+		alert( buffer() ); // Замыкания Использовать Нужно!
+		//buffer & buffer clear
+		function makeBuffer() {
+			var result ='';
+		function buffer(item) {
+			if (arguments.length == 0) return result;
+			return result += item;
+		}
+		buffer.clear = function() {
+				result = '';
+			}
+		return buffer;
+		}
+				var buffer = makeBuffer();	// добавить значения к буферу
+		buffer('Замыкания');
+		buffer(' Использовать');
+		buffer(' Нужно!');
+		alert( buffer() );
+		buffer.clear();
+		alert( buffer() );// Замыкания Использовать Нужно!
+		//sotring
+		var users = [{
+		name: "Вася",
+		surname: 'Иванов',
+		age: 20
+		}, {
+		name: "Петя",
+		surname: 'Чапаев',
+		age: 25
+		}, {
+		name: "Маша",
+		surname: 'Медведева',
+		age: 18
+		}];
+		function byField(field) {
+			return function (a , b) {
+				return a[field] > b[field] ? 1 : -1;
+			}
+		}
+		users.sort(byField('name'));
+		users.forEach(function(user) {
+		alert( user.name );
+		}); // Вася, Маша, Петя
+		users.sort(byField('age'));
+		users.forEach(function(user) {
+		alert( user.name );
+		}); // Маша, Вася, Петя
+		//filtering
+		
+		function filter(arr , funct) {
+			var result = [];
+			for (var i = 0; i < arr.length; i++) {
+			var value = arr[i];
+			if (funct(value)) result.push(value);
+
+		}
+		return result;
+		}
+		function inBetween(a , b) {
+			return function(x) {
+				return x <= b && x >= a;
+			}
+		}
+		function inArray(arr) {
+			return function(x) {
+				if (arr.indexOf(x) != -1) return true;
+				return false;
+			}
+		}
+		var arr = [1, 2, 3, 4, 5, 6, 7];
+
+		alert(filter(arr, function(a) {
+		  return a % 2 == 0
+		})); // 2,4,6
+
+alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
+
+alert( filter(arr, inArray([1, 2, 10])) ); // 1,2
+
+//shooters
+function makeArmy() {
+
+  var shooters = [];
+
+  for (var i = 0; i < 10; i++) {
+    var shooter = (function(x) { // функция-стрелок
+    	return function() {
+      alert( x );
+      } // выводит свой номер
+    })(i);
+    shooters.push(shooter);
+  }
+
+  return shooters;
+}
+
+var army = makeArmy();
+
+army[0](); // стрелок выводит 10, а должен 0
+army[5](); // стрелок выводит 10...
+// .. все стрелки выводят 10 вместо 0,1,2...9
+		</script>
+	</body>
+</html>
