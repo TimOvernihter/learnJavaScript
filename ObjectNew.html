@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Object creation with New</title>
+	</head>
+	<body>
+		<script>
+		/*
+		// Exercise 1
+			var calculator = new Calculator();
+			function Calculator() {
+				this.read = function() {
+					this.a = +prompt("Please enter number: ", "2");
+					this.b = +prompt("Please enter number: ", "1");
+				}
+				this.sum =  function() {
+					return this.a + this.b;
+				}
+				this.mul = function() {
+					return this.a*this.b;
+				}
+			}
+			calculator.read();
+			alert( "Сумма=" + calculator.sum() );
+			alert( "Произведение=" + calculator.mul() );
+			// Exercise 2
+			var accumulator = new Accumulator(1); // начальное значение 1
+			function Accumulator(startingValue) {
+				this.value = startingValue;
+				this.read = function() {
+					this.value += +prompt("Please enter numer", "1");
+				}
+			}
+			accumulator.read(); // прибавит ввод prompt к текущему значению
+			accumulator.read(); // прибавит ввод prompt к текущему значению
+			alert( accumulator.value ); // выведет текущее значение*/
+			// Exercise 3
+			var calc = new Calculator;
+			function Calculator() {
+				var methods = {
+					"+" : function(a, b) {
+						return a+b;
+					},
+					"-" : function(a, b) {
+						return a-b;
+					}
+				};
+				this.calculate = function(values) {
+					var nums = values.split(' ');
+					var a = +nums[0];
+					var op = nums[1];
+					var b = +nums[2];
+					if (isNaN(nums[0])||isNaN(nums[2])) return NaN;
+					return methods[op](+a,+b);
+				}
+				this.addMethod = function(name, func) {
+					methods[name] = func;
+				}
+			}
+			
+			alert( calc.calculate("3 - 7") );
+
+			var powerCalc = new Calculator;
+			powerCalc.addMethod("*", function(a, b) {
+			  return a * b;
+			});
+			powerCalc.addMethod("/", function(a, b) {
+			  return a / b;
+			});
+			powerCalc.addMethod("**", function(a, b) {
+			  return Math.pow(a, b);
+			});
+
+			var result = powerCalc.calculate("2 ** 3");
+			alert( result ); // 8 // 10
+		</script>
+	</body>
+</html>
