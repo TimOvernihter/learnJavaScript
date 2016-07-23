@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>This Chapter</title>
+	</head>
+	<body>
+		<script>
+			var calculator = {
+		read : function () {
+			this.n1 = +prompt("Введите n1: ", "2");
+			this.n2 = +prompt("Введите n2: ", "2");
+		},
+		sum : function () {
+			return this.n1 + this.n2;
+		},
+		mul : function () {
+			return this.n1*this.n2;
+		}
+		}
+		calculator.read();
+		alert( calculator.sum() );
+		alert( calculator.mul() );
+
+		var ladder = {
+		step: 0,
+		up: function() { // вверх по лестнице
+		this.step++;
+		return this;
+		},
+		down: function() { // вниз по лестнице
+		this.step--;
+		return this;
+		},
+		showStep: function() { // вывести текущую ступеньку
+		alert( this.step );
+		}
+		};
+		ladder.up().up().down().up().down().showStep();
+		</script>
+	</body>
+</html>
